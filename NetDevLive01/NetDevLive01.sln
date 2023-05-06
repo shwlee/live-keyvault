@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive01-WPF", "NetDevL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive-TokenAuth", "NetDevLive-TokenAuth\NetDevLive-TokenAuth.csproj", "{A339D234-D929-4F22-9A4F-D4D168563BE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive01-Web", "NetDevLive01-Web\NetDevLive01-Web.csproj", "{A26968D9-99E2-408B-8931-A50D2E22EA77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A26968D9-99E2-408B-8931-A50D2E22EA77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A26968D9-99E2-408B-8931-A50D2E22EA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A26968D9-99E2-408B-8931-A50D2E22EA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A26968D9-99E2-408B-8931-A50D2E22EA77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
