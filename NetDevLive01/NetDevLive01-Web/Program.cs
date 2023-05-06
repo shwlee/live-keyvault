@@ -1,7 +1,7 @@
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using NetDevLive01_Web.configs;
+using NetDevLive01.Web.configs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,13 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 var folder = "configs";
 var config = builder.Configuration;
 config.AddJsonFile(Path.Combine(folder, "appsettings.json"), true, true)
-    .AddJsonFile(Path.Combine(folder, $"appsettings.{builder.Environment.EnvironmentName}.json"), true);
+    .AddJsonFile(Path.Combine(folder, $"appsettings.{builder.Environment.EnvironmentName}.json"), true, true);
 builder.Services.Configure<AppSettings>(config.GetSection(nameof(AppSettings)));
 
 // KeyVault provider setting.
 var azureKeyVaultName = config["KeyVaultName"];
 var secretClient = new SecretClient(new Uri($"https://{azureKeyVaultName}.vault.azure.net/"), new DefaultAzureCredential());
-config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
+var keyVaultConfigOption = new AzureKeyVaultConfigurationOptions
+{
+    Manager = new KeyVaultSecretManager(),
+    //ReloadInterval = TimeSpan.FromSeconds(60)
+};
+config.AddAzureKeyVault(secretClient, keyVaultConfigOption);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

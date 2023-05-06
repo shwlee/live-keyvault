@@ -1,4 +1,4 @@
-﻿namespace NetDevLive01_Web.configs;
+﻿namespace NetDevLive01.Web.configs;
 
 public class AppSettings
 {

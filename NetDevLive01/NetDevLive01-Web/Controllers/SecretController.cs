@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using NetDevLive01_Web.configs;
+using NetDevLive01.Web.configs;
 
-namespace NetDevLive01_Web.Controllers;
+namespace NetDevLive01.Web.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -15,6 +15,20 @@ public class SecretController : ControllerBase
     {
         _config = config;
         _appSettings = options.Value;
+    }
+
+    [HttpGet("appsettings/sitekey")]
+    public IActionResult GetAppSettingKey()
+    {
+        var keyName = _appSettings.SiteKey;
+        if (string.IsNullOrWhiteSpace(keyName))
+        {
+            return NotFound();
+        }
+
+        var section = _config.GetSection("AppSettings:SiteKey");
+        
+        return Ok(section);
     }
 
     [HttpGet("site")]
