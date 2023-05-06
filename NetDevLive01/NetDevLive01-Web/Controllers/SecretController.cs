@@ -27,7 +27,7 @@ public class SecretController : ControllerBase
         }
 
         var section = _config.GetSection("AppSettings:SiteKey");
-        
+
         return Ok(section);
     }
 
@@ -39,8 +39,21 @@ public class SecretController : ControllerBase
         {
             return NotFound();
         }
-        
+
         var siteKey = _config[keyName];
+        return Ok(siteKey);
+    }
+
+    [HttpGet("connection")]
+    public IActionResult GetConnectionString()
+    {
+        var connectionStringKey = _config.GetConnectionString("DefaultConnection");
+        if (string.IsNullOrWhiteSpace(connectionStringKey))
+        {
+            return NotFound();
+        }
+
+        var siteKey = _config[connectionStringKey];
         return Ok(siteKey);
     }
 }
