@@ -2,6 +2,8 @@ using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using NetDevLive01.Web.configs;
+using NetDevLive01.Web.Contracts;
+using NetDevLive01.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,7 @@ config.AddAzureKeyVault(secretClient, keyVaultConfigOption);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IAppSettingVault, AppSettingVault>();
 
 var app = builder.Build();
 

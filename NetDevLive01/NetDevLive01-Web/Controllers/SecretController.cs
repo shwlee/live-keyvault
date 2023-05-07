@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using NetDevLive01.Web.configs;
+using NetDevLive01.Web.Contracts;
 
 namespace NetDevLive01.Web.Controllers;
 
@@ -8,52 +7,19 @@ namespace NetDevLive01.Web.Controllers;
 [Route("[controller]")]
 public class SecretController : ControllerBase
 {
-    private readonly IConfiguration _config;
-    private readonly AppSettings _appSettings;
+    private readonly IAppSettingVault _appSettingVault;
 
-    public SecretController(IConfiguration config, IOptions<AppSettings> options)
+    public SecretController(IAppSettingVault appSettingVault)
     {
-        _config = config;
-        _appSettings = options.Value;
+        _appSettingVault = appSettingVault;
     }
 
     [HttpGet("appsettings/sitekey")]
-    public IActionResult GetAppSettingKey()
-    {
-        var keyName = _appSettings.SiteKey;
-        if (string.IsNullOrWhiteSpace(keyName))
-        {
-            return NotFound();
-        }
-
-        var section = _config.GetSection("AppSettings:SiteKey");
-
-        return Ok(section);
-    }
+    public IActionResult GetAppSettingKey() => Ok(_appSettingVault.GetSection("AppSettings:SiteKey"));
 
     [HttpGet("site")]
-    public IActionResult GetSiteKeySecret()
-    {
-        var keyName = _appSettings.SiteKey;
-        if (string.IsNullOrWhiteSpace(keyName))
-        {
-            return NotFound();
-        }
-
-        var siteKey = _config[keyName];
-        return Ok(siteKey);
-    }
+    public IActionResult GetSiteKeySecret() => Ok(_appSettingVault.GetSiteKey());
 
     [HttpGet("connection")]
-    public IActionResult GetConnectionString()
-    {
-        var connectionStringKey = _config.GetConnectionString("DefaultConnection");
-        if (string.IsNullOrWhiteSpace(connectionStringKey))
-        {
-            return NotFound();
-        }
-
-        var siteKey = _config[connectionStringKey];
-        return Ok(siteKey);
-    }
+    public IActionResult GetConnectionString() => Ok(_appSettingVault.GetConnectionString());
 }
