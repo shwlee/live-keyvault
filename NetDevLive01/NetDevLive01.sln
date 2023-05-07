@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive01-WPF", "NetDevLive01-WPF\NetDevLive01-WPF.csproj", "{3567438E-955B-4A78-AF9E-BAA683AC5B2D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive-TokenAuth", "NetDevLive-TokenAuth\NetDevLive-TokenAuth.csproj", "{A339D234-D929-4F22-9A4F-D4D168563BE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevLive01-Web", "NetDevLive01-Web\NetDevLive01-Web.csproj", "{A26968D9-99E2-408B-8931-A50D2E22EA77}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3567438E-955B-4A78-AF9E-BAA683AC5B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3567438E-955B-4A78-AF9E-BAA683AC5B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3567438E-955B-4A78-AF9E-BAA683AC5B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3567438E-955B-4A78-AF9E-BAA683AC5B2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A339D234-D929-4F22-9A4F-D4D168563BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
