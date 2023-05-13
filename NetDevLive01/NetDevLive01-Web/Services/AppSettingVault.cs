@@ -10,11 +10,17 @@ public class AppSettingVault : IAppSettingVault
 {
     private readonly IConfiguration _config;
     private readonly IOptionsMonitor<AppSettings> _appSettingsMonitor;
+    private AppSettings _appSettings;
     
     public AppSettingVault(IConfiguration config, IOptionsMonitor<AppSettings> options)
     {
         _config = config;
         _appSettingsMonitor = options;
+        _appSettings = _appSettingsMonitor.CurrentValue;
+        _appSettingsMonitor.OnChange(appSettings =>
+        {
+            _appSettings = appSettings;
+        });
     }
 
     public string GetSiteKey()
@@ -32,6 +38,18 @@ public class AppSettingVault : IAppSettingVault
         }
 
         return siteKey;
+    }
+
+    public string GetSiteKeyName()
+    {
+        //var siteKeyName = _appSettingsMonitor.CurrentValue.SiteKey;
+        var siteKeyName = _appSettings.SiteKey;
+        if (string.IsNullOrWhiteSpace(siteKeyName))
+        {
+            throw new SettingNotFoundException(nameof(AppSettings.SiteKey));
+        }
+        
+        return siteKeyName;
     }
 
     public string GetConnectionString([Optional] [DefaultParameterValue("DefaultConnection")] string name)

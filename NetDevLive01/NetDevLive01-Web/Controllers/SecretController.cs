@@ -19,6 +19,9 @@ public class SecretController : ControllerBase
 
     [HttpGet("site")]
     public IActionResult GetSiteKeySecret() => Ok(_appSettingVault.GetSiteKey());
+    
+    [HttpGet("site/keyname")]
+    public IActionResult GetSiteKeyName() => Ok(_appSettingVault.GetSiteKeyName());
 
     [HttpGet("connection")]
     public IActionResult GetConnectionString() => Ok(_appSettingVault.GetConnectionString());
